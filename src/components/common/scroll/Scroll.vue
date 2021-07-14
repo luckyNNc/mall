@@ -40,11 +40,13 @@ export default {
       this.$emit('scroll',position)
     })
 
-    // 3.监听上拉事件
+    // 3.监听scroll滚动到底部
     this.scroll.on('pullingUp',()=>{
-      console.log('上拉加载更多');
+      // console.log('监听滚动到底部');
       this.$emit('pullingUp');
     })
+
+    // console.log(this.scroll);
   }
 }
 </script>

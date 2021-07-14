@@ -1,6 +1,6 @@
 <template>
-  <div class="goods-item">
-    <img :src="cgoodsitem.show.img" alt="">
+  <div class="goods-item" @click="itemClick">
+    <img :src="showImage" alt="" @load="imgLoaded">
     <div class="goods-info">
       <p>{{cgoodsitem.title}}</p>
       <span class="price">{{cgoodsitem.price}}</span>
@@ -18,6 +18,22 @@ export default {
       default(){
         return {}
       }
+    }
+  },
+  computed:{
+    showImage(){
+      return this.cgoodsitem.image || this.cgoodsitem.show.img
+    }
+  },
+  methods:{
+    imgLoaded(){
+      // console.log('imgload');
+      this.$bus.$emit('itemImageLoad');
+    },
+    itemClick(){
+      console.log('跳转到详情页');
+      // console.log(this.cgoodsitem);
+      this.$router.push('/detail/'+this.cgoodsitem.iid);
     }
   }
 }
